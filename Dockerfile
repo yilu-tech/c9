@@ -15,7 +15,7 @@ RUN sed -i -e 's_127.0.0.1_0.0.0.0_g' /cloud9/configs/standalone.js
 # install pm2
 RUN npm i -g pm2
 
-RUN mkdir -p /appss
+RUN mkdir -p /apps
 COPY startup.json /startup.json
 
 CMD ["pm2-runtime", "startup.json"]
