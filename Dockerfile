@@ -1,7 +1,7 @@
 FROM node:8-alpine
 
 # Install cloud9
-RUN apk add --update --no-cache build-base openssl-dev apache2-utils git libxml2-dev sshfs bash tmux python-dev py-pip \
+RUN apk add --update build-base openssl-dev apache2-utils git libxml2-dev sshfs bash tmux python-dev py-pip \
  && git clone https://github.com/c9/core.git /cloud9 \
  && curl -s -L https://raw.githubusercontent.com/c9/install/master/link.sh | bash \
  && /cloud9/scripts/install-sdk.sh \
