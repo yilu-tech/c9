@@ -1,9 +1,0 @@
-{
-  "apps": [
-    {
-      "name": "cloud9",
-      "script": "/cloud9/server.js",
-      "args": "-l 0.0.0.0 -p 80 -w /apps"
-    }
-  ]
-}

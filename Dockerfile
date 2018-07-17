@@ -1,19 +1,33 @@
-FROM node:8-alpine
+FROM ubuntu:16.04
 
-# Install cloud9
-RUN apk add --update curl build-base openssl-dev apache2-utils git libxml2-dev sshfs bash tmux python-dev py-pip \
- && git clone https://github.com/c9/core.git /cloud9 \
- && curl -s -L https://raw.githubusercontent.com/c9/install/master/link.sh | bash \
- && /cloud9/scripts/install-sdk.sh
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
-# Tweak standlone.js conf
-RUN sed -i -e 's_127.0.0.1_0.0.0.0_g' /cloud9/configs/standalone.js 
+ENV NVM_DIR /usr/local/.nvm
+ENV NODE_VERSION 6.14.3
 
-# install pm2
-RUN npm config set unsafe-perm true
-RUN npm i -g pm2
+RUN apt-get update
 
+RUN apt-get install -y curl build-essential g++ curl libssl-dev apache2-utils git libxml2-dev sshfs
+RUN git clone https://github.com/creationix/nvm.git $NVM_DIR \
+ && cd $NVM_DIR \
+ && git checkout `git describe --abbrev=0 --tags`
+RUN source $NVM_DIR/nvm.sh \
+ && nvm install $NODE_VERSION
+
+RUN echo "source ${NVM_DIR}/nvm.sh" > $HOME/.bashrc \
+ && source $HOME/.bashrc
+
+#ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
+
+RUN apt-get install -y python
+RUN git clone https://github.com/c9/core.git /cloud9 \
+ && /cloud9/scripts/install-sdk.sh \
+ && sed -i "s|127.0.0.1|0.0.0.0|g" /cloud9/configs/standalone.js
+
+COPY startup /startup
+RUN chmod +x /startup \
 RUN mkdir -p /apps
-COPY startup.json /startup.json
 
-CMD ["pm2-runtime", "startup.json"]
+WORKDIR /apps
+
+CMD ["/startup"]
