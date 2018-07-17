@@ -25,7 +25,7 @@ RUN git clone https://github.com/c9/core.git /cloud9 \
  && sed -i "s|127.0.0.1|0.0.0.0|g" /cloud9/configs/standalone.js
 
 COPY startup /startup
-RUN chmod +x /startup \
+RUN chmod +x /startup
 RUN mkdir -p /apps
 
 WORKDIR /apps
