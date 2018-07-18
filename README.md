@@ -2,4 +2,4 @@
 
 ## how to use
 
-    $ docker run -d -p $Port:80 -v $workspace:/apps yilutech/c9
+    $ docker run -d -p $Port:80 -v $workspace:/apps yilutech/cloud9
