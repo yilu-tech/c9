@@ -1,5 +1,5 @@
 #!/bin/bash
 
-source $NVM_DIR/nvm.sh
+source /root/.bashrc
 
-node /cloud9/server.js -l 0.0.0.0 -p 80 -w /apps
+pm2-runtime startup.json
