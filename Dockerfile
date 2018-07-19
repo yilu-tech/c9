@@ -24,7 +24,7 @@ RUN git clone https://github.com/c9/core.git /cloud9 \
  && sed -i "s|127.0.0.1|0.0.0.0|g" /cloud9/configs/standalone.js
 
 RUN source $NVM_DIR/nvm.sh \
- && soucre /root/.bashrc \
+ && source /root/.bashrc \
  && nvm alias default $STABLE \
  && npm config set unsafe-perm true \
  && npm i -g pm2 \
