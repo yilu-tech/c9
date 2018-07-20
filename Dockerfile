@@ -1,7 +1,7 @@
 FROM node:6-alpine
 
 # Install cloud9
-RUN apk add --update --no-cache g++ make python tmux curl bash git \
+RUN apk add --update --no-cache g++ make python tmux curl bash git openssh-client\
  && git clone git://github.com/c9/core.git /cloud9 \
  && curl -s -L https://raw.githubusercontent.com/c9/install/master/link.sh | bash \
  && /cloud9/scripts/install-sdk.sh \
