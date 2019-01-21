@@ -7,7 +7,7 @@ ENV NVM_DIR=/root/.nvm BORON=lts/boron STABLE=stable
 COPY startup startup.json /
 
 RUN apt-get update \
- && apt-get install -y curl build-essential g++ libssl-dev apache2-utils git libxml2-dev sshfs python\
+ && apt-get install -y curl build-essential g++ libssl-dev apache2-utils git libxml2-dev sshfs python tzdata \
  && git clone https://github.com/creationix/nvm.git $NVM_DIR \
  && cd $NVM_DIR \
  && git checkout `git describe --abbrev=0 --tags` \
@@ -31,6 +31,7 @@ RUN source $NVM_DIR/nvm.sh \
  && chmod +x /startup \
  && mkdir -p /apps \
  && apt-get remove -y python curl \
- && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+ && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+ && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 CMD ["/startup"]
