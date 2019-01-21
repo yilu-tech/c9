@@ -1,7 +1,7 @@
 FROM node:6-alpine
 
 # Install cloud9
-RUN apk add --update --no-cache g++ make python tmux curl bash git openssh-client\
+RUN apk add --update --no-cache g++ make python tmux curl bash git openssh-client tzdata \
  && git clone git://github.com/c9/core.git /cloud9 \
  && curl -s -L https://raw.githubusercontent.com/c9/install/master/link.sh | bash \
  && /cloud9/scripts/install-sdk.sh \
@@ -12,7 +12,9 @@ RUN apk add --update --no-cache g++ make python tmux curl bash git openssh-clien
 # install pm2
  && npm config set unsafe-perm true \
  && npm i -g pm2 \
- && mkdir -p /apps
+ && mkdir -p /apps \
+# set timezone
+ && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 COPY startup.json /startup.json
 
