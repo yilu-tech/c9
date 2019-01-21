@@ -7,7 +7,7 @@ ENV NVM_DIR=/root/.nvm BORON=lts/boron STABLE=stable
 COPY startup startup.json /
 
 RUN apt-get update \
- && apt-get install -y curl build-essential g++ libssl-dev apache2-utils git libxml2-dev sshfs python tzdata locale \
+ && apt-get install -y curl build-essential g++ libssl-dev apache2-utils git libxml2-dev sshfs python tzdata locales \
  && locale-gen en_US.UTF-8 \
  && git clone https://github.com/creationix/nvm.git $NVM_DIR \
  && cd $NVM_DIR \
