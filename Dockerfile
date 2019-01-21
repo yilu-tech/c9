@@ -2,12 +2,13 @@ FROM ubuntu:16.04
 
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
-ENV NVM_DIR=/root/.nvm BORON=lts/boron STABLE=stable
+ENV NVM_DIR=/root/.nvm BORON=lts/boron STABLE=stable 
 
 COPY startup startup.json /
 
 RUN apt-get update \
- && apt-get install -y curl build-essential g++ libssl-dev apache2-utils git libxml2-dev sshfs python tzdata \
+ && apt-get install -y curl build-essential g++ libssl-dev apache2-utils git libxml2-dev sshfs python tzdata locale \
+ && locale-gen en_US.UTF-8 \
  && git clone https://github.com/creationix/nvm.git $NVM_DIR \
  && cd $NVM_DIR \
  && git checkout `git describe --abbrev=0 --tags` \
@@ -16,6 +17,8 @@ RUN apt-get update \
  && source /root/.bashrc \
  && nvm install $STABLE \
  && nvm install $BORON
+
+ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8
 
 WORKDIR /
 
