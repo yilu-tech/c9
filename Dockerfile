@@ -10,9 +10,7 @@ RUN apk --no-cache add libintl \
  &&	cd .. && rm -r musl-locales \
  &&	apk del .locale_build
 
-ENV LANG=en_US.UTF-8
-    LANGUAGE=en_US.UTF-8
-    LC_ALL=en_US.UTF-8
+ENV LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
 # Install cloud9
 RUN apk add --update --no-cache g++ make python tmux curl bash git openssh-client tzdata \
