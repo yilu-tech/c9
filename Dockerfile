@@ -15,7 +15,7 @@ RUN apt-get update \
  && cd $NVM_DIR \
  && git checkout `git describe --abbrev=0 --tags` \
  && source $NVM_DIR/nvm.sh \
- && echo "source ${NVM_DIR}/nvm.sh" > /root/.bashrc \
+ && echo "source ${NVM_DIR}/nvm.sh" >> /root/.bashrc \
  && source /root/.bashrc \
  && nvm install $STABLE \
  && nvm install $BORON
