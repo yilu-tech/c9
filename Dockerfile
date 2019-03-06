@@ -2,9 +2,11 @@ FROM ubuntu:16.04
 
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
-ENV NVM_DIR=/root/.nvm BORON=lts/boron STABLE=stable 
+# ENV NVM_DIR=/root/.nvm BORON=lts/boron STABLE=stable 
+ENV NVM_DIR=/root/.nvm BORON=v6.16.0 STABLE=v11.7.0
 
 COPY startup startup.json /
+COPY .bashrc /root/.bashrc
 
 RUN apt-get update \
  && apt-get install -y curl build-essential g++ libssl-dev apache2-utils git libxml2-dev sshfs python tzdata locales \
