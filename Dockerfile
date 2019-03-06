@@ -29,5 +29,6 @@ RUN apk add --update --no-cache g++ make python tmux curl bash git openssh-clien
  && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 COPY startup.json /startup.json
+COPY .bashrc /root/.bashrc
 
 CMD ["pm2-runtime", "startup.json"]
