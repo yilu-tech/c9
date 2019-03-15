@@ -1,4 +1,4 @@
-FROM node:6-alpine
+FROM node:6.14.4-alpine
 
 # set locale
 ENV MUSL_LOCPATH="/usr/share/i18n/locales/musl"
