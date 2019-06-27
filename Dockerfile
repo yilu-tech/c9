@@ -6,7 +6,8 @@ COPY startup startup.json /
 
 SHELL ["/bin/bash", "-c"]
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y curl build-essential g++ libssl-dev apache2-utils git libxml2-dev sshfs python tzdata locales vim tmux \
+RUN apt-get update \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y curl build-essential g++ libssl-dev apache2-utils git libxml2-dev sshfs python tzdata locales vim tmux \
  && locale-gen en_US.UTF-8 \
  && git clone https://github.com/creationix/nvm.git $NVM_DIR \
  && cd $NVM_DIR \
