@@ -21,7 +21,7 @@ ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8
 
 RUN git clone https://github.com/c9/core.git /cloud9 \
  && /cloud9/scripts/install-sdk.sh \
- && sed -i "s|127.0.0.1|0.0.0.0|g" /cloud9/configs/standalone.js
+ && sed -i "s|127.0.0.1|0.0.0.0|g" /cloud9/configs/standalone.js \
  && source $NVM_DIR/nvm.sh \
  && source /root/.bashrc \
  && nvm alias default $STABLE \
