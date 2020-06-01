@@ -1,5 +1,0 @@
-#!/bin/bash
-
-source /root/.nvm/nvm.sh
-
-pm2-runtime startup.json
